@@ -1,0 +1,564 @@
+/* --------style css Grundstruktur------------------------------------------ */
+
+html
+{
+    scroll-behavior: smooth;
+    
+}
+
+
+/* --------Erstellung und festlegung meiner Farbpalette mit variablen im :root-------------*/
+
+@import url('https://fonts.googleapis.com/css2?famaly=Poppins:wght@200;400;600;700;900&display=swap');
+:root
+{
+    --main-brand-color:#297AE3;
+    --primary-color:#15171C;
+    --secondary-color:#232933;
+    --light-secondary-color:#2E3744;
+    --text-color:white;
+    --secondary-text-color:#B3B4B6;
+}
+
+
+/* --mit dem " * " selector entferne ich jehne voreingestellten margins and paddings und nutze diesen teil als meine general settings--------- */
+
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+body
+{
+    min-height: 100vh;
+    background-color: var(--primary-color);
+    font-family: 'Poppins', sans-serif;
+    
+    font-size: 20px;
+    color: var(--text-color);
+}
+
+h1
+{
+    font-weight: 700;
+    font-size: 90px;
+    line-height: 115%;
+}
+
+h3
+{
+    font-size: 60px;
+}
+
+.subheading
+{
+    margin-top: 25px;
+    color: var(--secondary-text-color);
+}
+
+
+/* ---Responsive:  Damit die Font-size an die Breite des Bildschirms angepasst wird,nutze ich "@media querrie".
+                   Mit der Max-width: 800px setzte ich fest das das die @media querrie nur für bildschirme ist 
+                   die kleiner sind als 800 px ----------------------------------------------------------------*/
+
+@media(max-width:800px)
+{
+    h1
+    {
+        font-size: 12vw;
+        text-align: center;
+    }
+    .subheading
+    {
+        text-align: center;
+    }
+
+    body{
+        font-size: 16px;
+    }
+}
+
+
+/* --------Header Bereich mit Navbar -------------------------------*/
+/*  Damit das Bild nicht Ei-förmig zererquechtt an die Seite gedrückt wird habe ich flex: wrap; benutzt */
+
+.header
+{
+    padding: 100px 25px;
+    display: flex;
+    justify-content: center;            
+    align-items: center;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.header-text
+{
+    width: 850px;
+}
+
+/* -------Mit max-height und max-width: 80vw; erscheint das Bild nicht Ei förmig auf kleineren Displays erscheint.
+          ich begrenze die maximale breite und höhe !
+          Der Kreis und das Bild sollen nicht kleiner als 80% der Display breite sein!------------*/
+
+.circle
+{
+    height: 500px;
+    width: 500px;
+
+    max-height: 80vw;
+    max-width: 80vw;
+
+    overflow: hidden;
+    border-radius: 50%;
+    /* border: 10px solid var(--main-brand-color); */
+    
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; 
+    
+}
+
+
+/* ----------------für mein img im "Kreis" habe ich eine height 100% gegeben, da das Bild querformat hat und ich möchte das nur die 
+                    überstehenden  Ränder abgeschnitten werden sollen und das Bild trotzdem gleich aussieht und sich nicht verzieht -------------------------------------*/
+.circle img
+{
+    height: 100%;
+       
+}
+
+nav
+{
+    margin-bottom: 120px;
+}
+
+nav ul
+{
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav a
+{
+    color: var(--secondary-text-color);
+    text-decoration: none;
+    position: relative;
+    padding: 3px;
+}
+
+nav a:hover 
+{
+    color: var(--text-color);
+}
+
+
+/* -----hiermit entsteht der Blaue Unterstrich in der Navi-Leiste, dadurch das ich hier die
+        width: o; angegeben habe und im im hover modus auf width: 100%; gesetzt habe
+        erscheint der blaue Unterstrich nur beim Hovern!--------------------*/
+nav a::after
+{
+    content: '';
+    height: 2px;
+    width: 0;
+    background: var(--main-brand-color);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: 150ms ease-in-out;
+}
+
+
+nav a:hover::after
+{
+    width: 100%;
+}
+
+#toggle-button
+{
+    display: none;
+}
+
+
+/*  [for="toggle-button"]
+    ist ein Attributselektor.
+    Damit präzisiere ich, 
+    dass ich das Label haben möchte, 
+    das mit dem for-Attribut auf
+    "toggle-button" verweist */
+
+
+    /* durch display: none: verstecke ich die menü kategorien, beim verkleinern des Fensters */
+label[for="toggle-button"]
+{
+    display: none;
+}
+
+/* Durch erhöhen der font-size in der span vergrößere ich den Toggle button ( hamburger menu icon) */
+
+label[for="toggle-button"] span
+{
+    font-size: 40px;
+}
+
+@media(max-width: 800px)
+{
+    nav
+    {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: var(--secondary-color);
+        padding: 15px;
+        border-radius: 0 0 25px 0;
+    }
+
+    nav ul
+    {
+        display: none;
+        flex-direction: column;
+    }
+    #toggle-button:checked ~ ul
+    {
+        display: flex;
+    }
+    label[for="toggle-button"]
+    {
+    display: block;
+    }
+}
+
+
+
+
+
+
+/* ---------About-me section -------------------------------------*/
+
+
+#about-me-section
+{
+    padding: 100px 0;
+    background-color: var(--secondary-color);
+    display: flex;
+    flex-wrap: wrap-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+}
+
+.about-me-container
+{
+    width: 750px;
+    max-width: 90%;
+}
+
+#about-me-section img
+{
+    width: 400px;
+    
+    max-width: 90%;
+    border: 15px solid var(--text-color);
+    border-radius: 3px;
+}
+
+.about-me-container h2
+{
+    font-size: 80px;
+}
+
+.about-me-container p
+{
+    text-align: justify;
+    line-height: 175%;
+    
+}
+
+@media(max-width: 800px)
+{
+    #about-me-section
+    {
+        padding: 50px 0;
+    }
+
+    #about-me-section h2
+    {
+        text-align: center;
+        font-size: 12vw;
+    }
+
+}
+
+
+
+/* -------knowledge/service section -------------------------------*/
+
+#services-section
+{
+    padding: 70px 0;
+    background-color: var(--primary-color);
+}
+
+#services-section h2 
+{
+    font-size: 80px;
+    text-align: center;
+}
+
+.flex-container
+{
+    margin-top: 60px;
+    display: flex;
+    gap: 40px; 
+    justify-content: center;   
+    flex-wrap: wrap;
+}
+
+.card
+{
+    width: 450px;
+    max-width: 90%;
+    background-color: var(--secondary-color);
+    border-radius: 100px;
+    padding: 60px 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Mit .card * spreche ich alle Kindelemente der Karten an und zentriere jeden Text in den 3 Boxen  */
+.card *
+{
+    text-align: center;
+}
+
+.card a
+{
+    background-color: var(--main-brand-color);
+    width: min-content;
+    padding: 15px 40px;
+    border-radius: 50px;
+    margin: 0 auto;
+    text-decoration: none;
+    color: var(--text-color);
+    border: 4px solid var(--main-brand-color);
+    transition: 150ms ease-in-out;
+}
+
+.card a:hover
+{
+    background: transparent;
+}
+
+@media(max-width: 500px)
+{   #services-section h2{
+    font-size: 12vw;
+}
+
+}
+
+
+
+
+
+/* -------Footer Section -------------------------------------*/
+
+
+footer
+{
+    padding: 70px 0;
+    background-color: var(--secondary-color);
+}
+
+footer h2 
+{
+    font-size: 50px;
+    text-align: center;
+}
+
+.grid-container
+{
+    margin: 60px auto;
+    width: 1500px;
+    max-width: 90%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 300px 300px;
+    gap: 15px;
+    grid-template-areas: 
+    "item1 item1 item2 item3"
+    "item4 item5 item5 item3";
+}
+
+.grid-item
+{
+    background-color: var(--light-secondary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    gap: 50px;
+}
+
+/* Notiz: Damit die Social Media Icons eine feste Höhe und
+    Breite bekommen! vergebe Ich hier eine feste größe
+    damit auf verschieden Display Größen richtig angezeigt wird */
+
+
+.grid-item img
+{
+    width: 150px;
+    height: 150px;
+}
+
+
+
+
+
+/*  Hier animire ich den Regenbogen Effect auf die Schrift */
+
+
+
+#item1 {
+    grid-area: item1;
+    animation: rainbow-animation 5s ease infinite;
+  }
+  
+  @keyframes rainbow-animation {
+    0% { color: #FF0000; }
+    20% { color: #FF7F00; }
+    40% { color: #FFFF00; }
+    60% { color: #00FF00; }
+    80% { color: #0000FF; }
+    100% { color: #4B0082; }
+  }
+
+#item2
+{
+    grid-area: item2;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#item3 
+{
+    grid-area: item3;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+
+#item4
+{
+    grid-area: item4;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+
+#item5 {
+    grid-area: item5;
+    animation: rainbow-animation 5s ease infinite;
+  }
+  
+  @keyframes rainbow-animation {
+    0% { color: #FF0000; }
+    20% { color: #FF7F00; }
+    40% { color: #FFFF00; }
+    60% { color: #00FF00; }
+    80% { color: #0000FF; }
+    100% { color: #4B0082; }
+  }
+
+.top
+{
+    
+        position: fixed;
+        width: 65px;
+        height: 35px;
+        background: transparent;
+        bottom: 40px;
+        border: 1px solid #bec1c5;
+        border-radius: 10%;
+        right: 50px;
+        font-weight: 300;
+    
+        text-align: initial;
+        text-align: center;
+        line-height: 50px;
+        color: #297AE3;
+        font-size: 15px;
+    
+}
+
+
+/* -------@media querrie für Desktop-------------------- */
+
+@media(max-width: 1300px)
+{
+    .grid-container
+    {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 300px 300px 300px;
+        
+        grid-template-areas: 
+        "item1 item1 item2"
+        "item4 item5 item5"
+        "item3 item3 item3";
+    }
+
+}
+
+
+/* -------------------@media querrie für Tablets ------------------------*/
+
+
+@media(max-width: 900px)
+{
+    .grid-container
+    {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto auto auto;
+        
+        grid-template-areas: 
+        "item1 item1"
+        "item5 item5"
+        "item2 item4"
+        "item3 item3";
+    }
+
+}
+
+
+/* -----------------------@mediaquerrie für Smartphones -------------------------*/
+
+
+@media(max-width: 650px){
+    footer h2{
+        font-size: 9vw;
+    }
+
+    .grid-item{
+        padding: 20px;
+    }
+
+    .grid-item img{
+        height: 100px;
+        width: 100px;
+    }
+
+    .grid-item h3{
+        font-size: 24px;
+    }
+}
+
+
