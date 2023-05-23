@@ -81,7 +81,8 @@ h3
 
 
 /* --------Header Bereich mit Navbar -------------------------------*/
-/*  Damit das Bild nicht Ei-förmig zererquechtt an die Seite gedrückt wird habe ich flex: wrap; benutzt */
+/* Ich benutze hier Flexbox um den Text und das Bild nebeneinander darzustellen  */
+/*  Damit das Bild bei verkleinern des Displays unter den Text rutschen soll habe ich flex: wrap; benutzt */
 
 .header
 {
@@ -100,7 +101,7 @@ h3
 
 /* -------Mit max-height und max-width: 80vw; erscheint das Bild nicht Ei förmig auf kleineren Displays erscheint.
           ich begrenze die maximale breite und höhe !
-          Der Kreis und das Bild sollen nicht kleiner als 80% der Display breite sein!------------*/
+          Der Kreis und das Bild sollen nicht kleiner als 80% der Display breite sein! also sind sie abhängig von der view port width des Gerätes------------*/
 
 .circle
 {
@@ -115,6 +116,7 @@ h3
     /* border: 10px solid var(--main-brand-color); */
     
 
+    /* um das Bild zu zentrien benutze ich hier ebenfalls Flexbox */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -135,6 +137,8 @@ nav
 {
     margin-bottom: 120px;
 }
+
+/* Für di nav ul nutze ich Flexbox, damit die Links nebeneinander angezeigt werden */
 
 nav ul
 {
@@ -159,7 +163,7 @@ nav a:hover
 
 /* -----hiermit entsteht der Blaue Unterstrich in der Navi-Leiste, dadurch das ich hier die
         width: o; angegeben habe und im im hover modus auf width: 100%; gesetzt habe
-        erscheint der blaue Unterstrich nur beim Hovern!--------------------*/
+        erscheint der blaue Unterstrich nur beim Hovern! Mit position absolute in nav a::after und Position relative in nav a ist der Unterstrich immer relative zu seinem Link positioniert.--------------------*/
 nav a::after
 {
     content: '';
@@ -239,7 +243,7 @@ label[for="toggle-button"] span
 
 /* ---------About-me section -------------------------------------*/
 
-
+/*  Mit flex-wrap: wrap-reverse setzte ich unter das 1. bild die Überschrift und den Text der about-me section. Damit der Text und das Bild nicht den Rand berühren vergebe ich eine max-width: 90% */
 #about-me-section
 {
     padding: 100px 0;
@@ -271,6 +275,8 @@ label[for="toggle-button"] span
     font-size: 80px;
 }
 
+/* Damit der Text im Blocksatz angezeigt wird nutze ich hier text-align:justify 
+   Mit der line-height vergrößere ich zudem den Zeilenabstand*/
 .about-me-container p
 {
     text-align: justify;
@@ -309,6 +315,8 @@ label[for="toggle-button"] span
     text-align: center;
 }
 
+/* Mit display: flex sind die einzelnen card boxen nebeneinander un haben ein abstand von 40px. 
+   Mit flex:wrap sind die boxen dann bei kleineren displays untereinander */
 .flex-container
 {
     margin-top: 60px;
@@ -338,6 +346,8 @@ label[for="toggle-button"] span
     text-align: center;
 }
 
+/* Hier wird der Button unterhalb des Textes gestyled.
+    min-content wird in CSS verwendet, um die Mindestbreite eines Elements festzulegen. Was bedeutet, dass die Breite eines Elements durch den Inhalt bestimmt wird.*/
 .card a
 {
     background-color: var(--main-brand-color);
@@ -356,6 +366,8 @@ label[for="toggle-button"] span
     background: transparent;
 }
 
+
+/* Der Umbruch geschieht erst ab einer Display größe von 500px und die font-size ändert sich auf 12vw. */
 @media(max-width: 500px)
 {   #services-section h2{
     font-size: 12vw;
@@ -396,6 +408,7 @@ footer h2
     "item4 item5 item5 item3";
 }
 
+/* Hier wird der Abstand von Icon zum Text und Rand bereich festgelegt */
 .grid-item
 {
     background-color: var(--light-secondary-color);
@@ -479,6 +492,9 @@ footer h2
     100% { color: #4B0082; }
   }
 
+
+  /*--- Den  Back to Top Button habe ich am unteren rechten Rand fixiert.
+     */
 .top
 {
     
@@ -492,7 +508,7 @@ footer h2
         right: 50px;
         font-weight: 300;
     
-        text-align: initial;
+        /* text-align: initial; */
         text-align: center;
         line-height: 50px;
         color: #297AE3;
@@ -502,7 +518,8 @@ footer h2
 
 
 /* -------@media querrie für Desktop-------------------- */
-
+/* --hier habe ich von ursprünglich 4.Spalten und 2.Zeilen-----
+    auf 3.Spalten und 3.Zeilen reduziert. */
 @media(max-width: 1300px)
 {
     .grid-container
@@ -520,7 +537,8 @@ footer h2
 
 
 /* -------------------@media querrie für Tablets ------------------------*/
-
+/*  hier habe ich von ursprünglich 3 Spalten auf 2 Spalten reduziert. 
+    Aber die Anzahl der Zeilen auf 4 erhöht. */
 
 @media(max-width: 900px)
 {
@@ -539,7 +557,8 @@ footer h2
 }
 
 
-/* -----------------------@mediaquerrie für Smartphones -------------------------*/
+/* -----------------------@mediaquerrie für Smartphones----
+   hier habe ich die Größe der Icons (grid-item img) auf 100px verkleinert*/
 
 
 @media(max-width: 650px){
